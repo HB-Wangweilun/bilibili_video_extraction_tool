@@ -1,0 +1,61 @@
+[package]
+name = "bili-video-extractor"
+version = "0.1.0"
+description = "B站视频解析工具 - 输入链接导出 MP4"
+authors = ["Bili Video Extractor"]
+edition = "2021"
+rust-version = "1.77"
+
+# 库名（供 main.rs 调用），同时产出可被 Tauri 打包的产物
+[lib]
+name = "bili_video_extractor_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+# 主程序：显式指定名字，这样 cargo 直接产出 BiliVideoExtractor.exe，
+# 双击即可运行（不需要安装程序）
+[[bin]]
+name = "BiliVideoExtractor"
+path = "src/main.rs"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+tokio = { version = "1", features = [
+    "fs",
+    "io-util",
+    "macros",
+    "rt-multi-thread",
+    "sync",
+    "time",
+    "process",
+] }
+
+reqwest = { version = "0.12", default-features = false, features = [
+    "json",
+    "stream",
+    "rustls-tls",
+] }
+futures-util = "0.3"
+
+anyhow = "1"
+regex = "1"
+base64 = "0.22"
+url = "2"
+# 解压 ffmpeg 的 .tar.gz 发布包
+flate2 = "1"
+tar = "0.4"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

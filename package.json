@@ -1,0 +1,31 @@
+{
+  "name": "bilibili-video-extraction-tool",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "B站视频解析下载工具 - 输入链接，导出 MP4",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build && node scripts/collect-exe.mjs",
+    "tauri:exe": "tauri build --no-bundle && node scripts/collect-exe.mjs"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.9.0",
+    "@tauri-apps/plugin-dialog": "^2.4.0",
+    "@tauri-apps/plugin-opener": "^2.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.9.0",
+    "vite": "^6.3.0"
+  }
+}
